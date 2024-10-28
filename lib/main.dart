@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cookly/presentation/screens/authorization.dart';
-import 'package:cookly/presentation/screens/registration.dart';
-import 'package:cookly/presentation/screens/welcome_screen.dart';
-import 'package:cookly/presentation/screens/splash_screen.dart';
+import 'package:cookly/presentation/menu/main_menu.dart';
 
 
 void main() {
@@ -17,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: RegScreen(), // Начальная страница
+      home: MainMenu(), // Начальная страница
     );
   }
 }
