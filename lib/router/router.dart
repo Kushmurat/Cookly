@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:cookly/presentation/screens/authorization.dart';
-import 'package:cookly/presentation/screens/registration.dart';
-import 'package:cookly/presentation/screens/welcome_screen.dart';
-import 'package:cookly/presentation/screens/splash_screen.dart';
+
+import '../presentation/auth/authorization.dart';
+import '../presentation/auth/registration.dart';
+import '../presentation/auth/splash_screen.dart';
+import '../presentation/auth/welcome_screen.dart';
 
 class AppRouter extends StatelessWidget {
   const AppRouter({super.key});
