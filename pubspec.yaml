@@ -21,6 +21,7 @@ dependencies:
   dio: ^5.7.0
   google_fonts: ^5.0.0
   path_provider: ^2.0.11
+  provider: ^6.1.2
 
 
 dev_dependencies:

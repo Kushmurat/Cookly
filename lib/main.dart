@@ -1,3 +1,6 @@
+import 'package:cookly/presentation/auth/authorization.dart';
+import 'package:cookly/presentation/auth/registration.dart';
+import 'package:cookly/src/app/app.dart';
 import 'package:flutter/material.dart';
 import 'package:cookly/presentation/menu/main_menu.dart';
 
@@ -14,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MainMenu(), // Начальная страница
+      home: const App(), // Начальная страница
     );
   }
 }

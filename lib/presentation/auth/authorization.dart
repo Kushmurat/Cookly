@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../services/api_service.dart';
+
 class AuthScreen extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,11 +26,11 @@ class AuthScreen extends StatelessWidget {
                     color: Colors.orange,
                   ),
                 ),
-                SizedBox(height: 26),
+                const SizedBox(height: 26),
                 // Карточка с формой
                 Card(
                   color: Colors.white,
-                  margin: EdgeInsets.symmetric(horizontal: 17.0), // Сделал симметричный отступ
+                  margin: const EdgeInsets.symmetric(horizontal: 17.0), // Сделал симметричный отступ
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(35),
                   ),
@@ -36,18 +41,19 @@ class AuthScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         // Поле ввода ID или Email
-                        Text(
+                        const Text(
                           'ID или Email адрес',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         SizedBox(
                           width: double.infinity,
                           height: 55,
-                          child: TextFormField(
+                          child: TextField(
+                            controller: emailController,
                             decoration: InputDecoration(
                               filled: true,
                               fillColor: Colors.grey[100],
@@ -55,44 +61,45 @@ class AuthScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(9),
                                 borderSide: BorderSide.none,
                               ),
-                              contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                             ),
                           ),
                         ),
-                        SizedBox(height: 37),
+                        const SizedBox(height: 37),
                         // Поле ввода пароля
-                        Text(
+                        const Text(
                           'Пароль',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         SizedBox(
                           width: double.infinity,
                           height: 55,
-                          child: TextFormField(
+                          child: TextField(
                             obscureText: true,
+                            controller: passwordController,
                             decoration: InputDecoration(
                               filled: true,
                               fillColor: Colors.grey[100], // Цвет фона текстового поля
-                              suffixIcon: Icon(Icons.visibility), // Иконка в конце поля
+                              suffixIcon: const Icon(Icons.visibility), // Иконка в конце поля
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(9),
                                 borderSide: BorderSide.none, // Убираем видимую границу
                               ),
-                              contentPadding: EdgeInsets.symmetric(horizontal: 16), // Внутренние отступы
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 16), // Внутренние отступы
                             ),
                           ),
                         ),
-                        SizedBox(height: 15),
+                        const SizedBox(height: 15),
                         // Ссылка "Забыли пароль?"
                         Align(
                           alignment: Alignment.center,
                           child: TextButton(
                             onPressed: () {},
-                            child: Text(
+                            child: const Text(
                               'Забыли пароль?',
                               style: TextStyle(
                                 fontSize: 16,
@@ -102,7 +109,7 @@ class AuthScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         // Кнопка "Войти"
                         SizedBox(
                           width: double.infinity,
@@ -114,8 +121,21 @@ class AuthScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(30),
                               ),
                             ),
-                            onPressed: () {},
-                            child: Text(
+                            onPressed: () async {
+                              String email = emailController.text;
+                              String password = passwordController.text;
+
+                              var response = await loginUser(email, password);
+                              if (response != null) {
+                                print('Ответ от сервера: ${response.body}');
+                                // Проверьте содержимое `response.body`, чтобы узнать точную ошибку
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text('Ошибка входа')),
+                                );
+                              }
+                            },
+                            child: const Text(
                               'Войти',
                               style: TextStyle(
                                 fontSize: 20,
@@ -124,27 +144,27 @@ class AuthScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 15),
+                        const SizedBox(height: 15),
                         // Checkbox "Запомнить меня"
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Checkbox(value: false, onChanged: (value) {}),
-                            Text('Запомнить меня'),
+                            const Text('Запомнить меня'),
                           ],
                         ),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 // Нижняя часть: текст "Нет персонального аккаунта?"
-                Text('Нет персонального аккаунта?'),
+                const Text('Нет персонального аккаунта?'),
                 TextButton(
                   onPressed: () {
                     // Действие на регистрацию
                   },
-                  child: Text(
+                  child: const Text(
                     'Регистрация',
                     style: TextStyle(
                       color: Colors.orange,
