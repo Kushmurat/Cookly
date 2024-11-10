@@ -1,5 +1,8 @@
 import 'dart:async';
+import 'package:cookly/presentation/auth/welcome_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class Landing extends StatelessWidget {
   const Landing({super.key});
@@ -24,25 +27,24 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
       const Duration(seconds: 2),
           () {
-        Navigator.pushNamed(context, '/');
+        Navigator.pushReplacementNamed(context,'/');
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.orange,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Добавьте содержимое вашего экрана приветствия здесь
             Text(
               'Cookly',
-              style: TextStyle(
+              style: GoogleFonts.pacifico(
                 color: Colors.white,
-                fontSize: 24.0,
+                fontSize: 48.0,
                 fontWeight: FontWeight.bold,
               ),
             ),

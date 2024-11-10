@@ -7,10 +7,9 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Фоновое изображение
           Positioned.fill(
             child: Image.asset(
-              'assets/backgraund.png', // Замените на свой путь к изображению
+              'assets/backgraund.png',
               fit: BoxFit.cover,
             ),
           ),
@@ -25,7 +24,7 @@ class WelcomeScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 358),
+                const SizedBox(height: 358),
                 // Заголовок
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -39,7 +38,7 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 218), // Отступ до кнопки
+                const SizedBox(height: 218), // Отступ до кнопки
                 // Кнопка "Продолжить"
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -54,9 +53,9 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        // Действие по нажатию на кнопку
+                        Navigator.pushNamed(context, '/auth');
                       },
-                      child: Text(
+                      child: const Text(
                         'Продолжить',
                         style: TextStyle(
                           fontSize: 20,
@@ -66,9 +65,9 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Текст с условиями
-                Text(
+                const Text(
                   'Нажимая "Продолжить", Вы соглашаетесь с\nполитикой обработки данных',
                   textAlign: TextAlign.center,
                   style: TextStyle(

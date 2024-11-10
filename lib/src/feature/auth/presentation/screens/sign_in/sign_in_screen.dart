@@ -192,7 +192,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   const Text('Нет персонального аккаунта?'),
                   TextButton(
                     onPressed: () {
-                      // Действие на регистрацию
+                      Navigator.pushReplacementNamed(context, '/reg');
                     },
                     child: const Text(
                       'Регистрация',

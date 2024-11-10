@@ -1,4 +1,5 @@
 import 'package:cookly/presentation/auth/authorization.dart';
+import 'package:cookly/presentation/auth/registration.dart';
 import 'package:cookly/src/app/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

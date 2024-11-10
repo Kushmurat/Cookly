@@ -4,31 +4,19 @@ class MainMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Главная'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed: () {},
-          ),
-          CircleAvatar(
-            backgroundColor: Colors.grey[200],
-          ),
-          SizedBox(width: 16),
-        ],
-      ),
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
             _buildGreetingSection(),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             _buildRecipeOfTheDay(),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             _buildSearchBar(),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             _buildCategories(),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             _buildPopularRecipes(),
           ],
         ),
@@ -38,12 +26,12 @@ class MainMenu extends StatelessWidget {
   }
 
   Widget _buildGreetingSection() {
-    return Text(
+    return const Text(
       'Приветствуем Имя!',
       style: TextStyle(
-        fontSize: 24,
+        fontSize: 16,
         fontWeight: FontWeight.bold,
-        color: Colors.blueAccent,
+        color: Colors.black,
       ),
     );
   }
@@ -52,16 +40,16 @@ class MainMenu extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        image: DecorationImage(
-          image: AssetImage('assets/images/pie.jpg'), // Укажите путь к изображению
+        image: const DecorationImage(
+          image: AssetImage('assets/backgraundmenu.png'), // Укажите путь к изображению
           fit: BoxFit.cover,
         ),
       ),
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'Рецепт дня',
             style: TextStyle(
               fontSize: 20,
@@ -69,17 +57,17 @@ class MainMenu extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 8),
-          Text(
+          const SizedBox(height: 8),
+          const Text(
             'Нежный и ароматный яблочный пирог, символ домашнего уюта',
             style: TextStyle(
               color: Colors.white,
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {},
-            child: Text('Приготовить'),
+            child: const Text('Приготовить'),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.orange,
             ),
@@ -93,8 +81,8 @@ class MainMenu extends StatelessWidget {
     return TextField(
       decoration: InputDecoration(
         hintText: 'Поиск',
-        prefixIcon: Icon(Icons.search),
-        suffixIcon: Icon(Icons.filter_alt),
+        prefixIcon: const Icon(Icons.search),
+        suffixIcon: const Icon(Icons.filter_alt),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide.none,
@@ -117,34 +105,31 @@ class MainMenu extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Категории',
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 8),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: categories.map((category) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Column(
-                  children: [
-                    CircleAvatar(
-                      backgroundColor: Colors.grey[200],
-                      radius: 30,
-                      child: Icon(category['icon'] as IconData, color: Colors.black),
-                    ),
-                    SizedBox(height: 4),
-                    Text(category['label'] as String),
-                  ],
-                ),
-              );
-            }).toList(),
-          ),
+        const SizedBox(height: 8),
+        Row(
+          children: categories.map((category) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Colors.grey[200],
+                    radius: 30,
+                    child: Icon(category['icon'] as IconData, color: Colors.black),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(category['label'] as String),
+                ],
+              ),
+            );
+          }).toList(),
         ),
       ],
     );
@@ -157,7 +142,7 @@ class MainMenu extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            const Text(
               'Популярные рецепты',
               style: TextStyle(
                 fontSize: 18,
@@ -166,16 +151,25 @@ class MainMenu extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {},
-              child: Text('Посмотреть все'),
+              child: const Text('Посмотреть все'),
             ),
           ],
         ),
-        SizedBox(height: 8),
-        Row(
+        const SizedBox(height: 8),
+        Column(
           children: [
-            _buildRecipeCard('Цезарь с курицей', '25 мин', 'assets/images/caesar.jpg'),
-            SizedBox(width: 8),
-            _buildRecipeCard('Название', '30 мин', 'assets/images/salmon.jpg'),
+            _buildRecipeCard('Цезарь с курицей', '25 мин', 'assets/salat.png'),
+            const SizedBox(height: 8),
+            _buildRecipeCard('Название', '30 мин', 'assets/fish.png'),
+            const SizedBox(height: 8),
+            _buildRecipeCard('Название', '30 мин', 'assets/pizza.png'),
+            const SizedBox(height: 8),
+            _buildRecipeCard('Название', '30 мин', 'assets/shakshuke.png'),
+            const SizedBox(height: 8),
+            _buildRecipeCard('Название', '30 мин', 'assets/bleny.png'),
+            const SizedBox(height: 8),
+            _buildRecipeCard('Название', '30 мин', 'assets/lapsha.png'),
+
           ],
         ),
       ],
@@ -183,9 +177,10 @@ class MainMenu extends StatelessWidget {
   }
 
   Widget _buildRecipeCard(String title, String time, String image) {
-    return Expanded(
+    return SizedBox(
       child: Container(
-        height: 200,
+        height: 216,
+        width: 165,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           image: DecorationImage(
@@ -200,7 +195,7 @@ class MainMenu extends StatelessWidget {
               left: 8,
               child: Text(
                 title,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
@@ -211,16 +206,16 @@ class MainMenu extends StatelessWidget {
               left: 8,
               child: Row(
                 children: [
-                  Icon(Icons.timer, color: Colors.white),
-                  SizedBox(width: 4),
+                  const Icon(Icons.timer, color: Colors.white),
+                  const SizedBox(width: 4),
                   Text(
                     time,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ],
               ),
             ),
-            Positioned(
+            const Positioned(
               top: 8,
               right: 8,
               child: Icon(
@@ -236,13 +231,14 @@ class MainMenu extends StatelessWidget {
 
   Widget _buildBottomNavigationBar() {
     return BottomNavigationBar(
-      items: [
+      items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Главная'),
         BottomNavigationBarItem(icon: Icon(Icons.star), label: 'Избранное'),
         BottomNavigationBarItem(icon: Icon(Icons.assistant), label: 'Ассистент'),
         BottomNavigationBarItem(icon: Icon(Icons.store), label: 'Магазин'),
         BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Профиль'),
       ],
+      backgroundColor: Colors.white,
       selectedItemColor: Colors.orange,
       unselectedItemColor: Colors.grey,
     );
