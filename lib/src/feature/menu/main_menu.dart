@@ -1,6 +1,10 @@
+import 'package:cookly/src/feature/auth/presentation/widgets/app_icon.widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:cookly/src/feature/auth/presentation/widgets/app_icon.widget.dart';
 
 class MainMenu extends StatelessWidget {
+  const MainMenu ({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +45,7 @@ class MainMenu extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         image: const DecorationImage(
-          image: AssetImage('assets/backgraundmenu.png'), // Укажите путь к изображению
+          image: AssetImage('assets/images/backgraundmenu.png'), // Укажите путь к изображению
           fit: BoxFit.cover,
         ),
       ),
@@ -136,6 +140,15 @@ class MainMenu extends StatelessWidget {
   }
 
   Widget _buildPopularRecipes() {
+    final recipes = [
+      {'title': 'Цезарь с курицей', 'time': '25 мин', 'image': 'assets/images/salat.png'},
+      {'title': 'Название', 'time': '30 мин', 'image': 'assets/images/fish.png'},
+      {'title': 'Название', 'time': '30 мин', 'image': 'assets/images/pizza.png'},
+      {'title': 'Название', 'time': '30 мин', 'image': 'assets/images/shakshuke.png'},
+      {'title': 'Название', 'time': '30 мин', 'image': 'assets/images/bleny.png'},
+      {'title': 'Название', 'time': '30 мин', 'image': 'assets/images/lapsha.png'},
+    ];
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -156,75 +169,74 @@ class MainMenu extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 8),
-        Column(
-          children: [
-            _buildRecipeCard('Цезарь с курицей', '25 мин', 'assets/salat.png'),
-            const SizedBox(height: 8),
-            _buildRecipeCard('Название', '30 мин', 'assets/fish.png'),
-            const SizedBox(height: 8),
-            _buildRecipeCard('Название', '30 мин', 'assets/pizza.png'),
-            const SizedBox(height: 8),
-            _buildRecipeCard('Название', '30 мин', 'assets/shakshuke.png'),
-            const SizedBox(height: 8),
-            _buildRecipeCard('Название', '30 мин', 'assets/bleny.png'),
-            const SizedBox(height: 8),
-            _buildRecipeCard('Название', '30 мин', 'assets/lapsha.png'),
-
-          ],
+        GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 3 / 4,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
+          ),
+          itemCount: recipes.length,
+          itemBuilder: (BuildContext context, int index) {
+            final recipe = recipes[index];
+            return _buildRecipeCard(
+              recipe['title']!,
+              recipe['time']!,
+              recipe['image']!,
+            );
+          },
         ),
       ],
     );
   }
 
   Widget _buildRecipeCard(String title, String time, String image) {
-    return SizedBox(
-      child: Container(
-        height: 216,
-        width: 165,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          image: DecorationImage(
-            image: AssetImage(image),
-            fit: BoxFit.cover,
-          ),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        image: DecorationImage(
+          image: AssetImage(image),
+          fit: BoxFit.cover,
         ),
-        child: Stack(
-          children: [
-            Positioned(
-              top: 8,
-              left: 8,
-              child: Text(
-                title,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 8,
-              left: 8,
-              child: Row(
-                children: [
-                  const Icon(Icons.timer, color: Colors.white),
-                  const SizedBox(width: 4),
-                  Text(
-                    time,
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                ],
-              ),
-            ),
-            const Positioned(
-              top: 8,
-              right: 8,
-              child: Icon(
-                Icons.star_border,
+      ),
+      child: Stack(
+        children: [
+          Positioned(
+            top: 8,
+            left: 8,
+            child: Text(
+              title,
+              style: const TextStyle(
                 color: Colors.white,
+                fontWeight: FontWeight.bold,
               ),
             ),
-          ],
-        ),
+          ),
+          Positioned(
+            bottom: 8,
+            left: 8,
+            child: Row(
+              children: [
+                const Icon(Icons.timer, color: Colors.white),
+                const SizedBox(width: 4),
+                Text(
+                  time,
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
+          ),
+          const Positioned(
+            top: 8,
+            right: 8,
+            child: Icon(
+              Icons.star_border,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -232,11 +244,11 @@ class MainMenu extends StatelessWidget {
   Widget _buildBottomNavigationBar() {
     return BottomNavigationBar(
       items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Главная'),
-        BottomNavigationBarItem(icon: Icon(Icons.star), label: 'Избранное'),
-        BottomNavigationBarItem(icon: Icon(Icons.assistant), label: 'Ассистент'),
-        BottomNavigationBarItem(icon: Icon(Icons.store), label: 'Магазин'),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Профиль'),
+        BottomNavigationBarItem(icon: AppIcon('ic_home') , label: 'Главная'),
+        BottomNavigationBarItem(icon: AppIcon('ic_star'), label: 'Избранное'),
+        BottomNavigationBarItem(icon: AppIcon('ic_ai_cook'), label: 'Ассистент'),
+        BottomNavigationBarItem(icon: AppIcon('ic_basket'), label: 'Магазин'),
+        BottomNavigationBarItem(icon: AppIcon('ic_profile'), label: 'Профиль'),
       ],
       backgroundColor: Colors.white,
       selectedItemColor: Colors.orange,
