@@ -73,8 +73,13 @@ class MainMenu extends StatelessWidget {
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {},
-            child: const Text('Приготовить'),
+            child: const Text('Приготовить',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
             style: ElevatedButton.styleFrom(
+
               backgroundColor: Colors.orange,
             ),
           ),
