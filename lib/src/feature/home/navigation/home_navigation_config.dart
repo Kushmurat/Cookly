@@ -36,28 +36,38 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        type: BottomNavigationBarType.fixed,
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: AppIcon('ic_home'),
+            icon: AppIcon('ic_home',
+              color: _selectedIndex == 0 ? Colors.amber[800] : Colors.grey[800],
+            ),
             label: 'Главная',
           ),
           BottomNavigationBarItem(
-            icon: AppIcon('ic_star'),
+            icon: AppIcon('ic_star',
+              color: _selectedIndex == 1 ? Colors.amber[800] : Colors.grey[800],
+            ),
             label: 'Избранное',
           ),
           BottomNavigationBarItem(
-            icon: AppIcon('ic_ai_cook'),
+            icon: AppIcon('ic_ai_cook',
+              color: _selectedIndex == 2 ? Colors.amber[800] : Colors.grey[800],
+            ),
             label: 'Ассистент',
           ),
           BottomNavigationBarItem(
-            icon: AppIcon('ic_basket'),
+            icon: AppIcon('ic_basket',
+              color: _selectedIndex == 3 ? Colors.amber[800] : Colors.grey[800],
+            ),
             label: 'Магазин',
           ),
           BottomNavigationBarItem(
-            icon: AppIcon('ic_profile'),
+            icon: AppIcon('ic_profile',
+              color: _selectedIndex == 4 ? Colors.amber[800] : Colors.grey[800],
+            ),
             label: 'Профиль',
           ),
         ],

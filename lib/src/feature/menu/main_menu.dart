@@ -136,7 +136,11 @@ class MainMenu extends StatelessWidget {
                     child: Icon(category['icon'] as IconData, color: Colors.black),
                   ),
                   const SizedBox(height: 4),
-                  Text(category['label'] as String),
+                  Text(category['label'] as String,
+                    style: const TextStyle(
+                      fontSize: 10,
+                    ),
+                  ),
                 ],
               ),
             );
@@ -251,21 +255,6 @@ class MainMenu extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildBottomNavigationBar() {
-    return BottomNavigationBar(
-      items: const [
-        BottomNavigationBarItem(icon: AppIcon('ic_home') , label: 'Главная'),
-        BottomNavigationBarItem(icon: AppIcon('ic_star'), label: 'Избранное'),
-        BottomNavigationBarItem(icon: AppIcon('ic_ai_cook'), label: 'Ассистент'),
-        BottomNavigationBarItem(icon: AppIcon('ic_basket'), label: 'Магазин'),
-        BottomNavigationBarItem(icon: AppIcon('ic_profile'), label: 'Профиль'),
-      ],
-      backgroundColor: Colors.white,
-      selectedItemColor: Colors.orange,
-      unselectedItemColor: Colors.grey,
     );
   }
 }
