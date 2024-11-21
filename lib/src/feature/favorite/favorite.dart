@@ -7,7 +7,7 @@ class FavoritePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orange,
-        title: const Text("Избранное", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+        title: const Text("Избранное", style: TextStyle(fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold)),
         centerTitle: true,
         elevation: 0,
       ),
