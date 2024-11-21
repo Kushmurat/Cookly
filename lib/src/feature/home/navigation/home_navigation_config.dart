@@ -1,75 +1,74 @@
 import 'package:flutter/material.dart';
 
 import '../../ai_chat/ai_chat.dart';
+import '../../auth/presentation/widgets/app_icon.widget.dart';
 import '../../favorite/favorite.dart';
 import '../../menu/main_menu.dart';
-import 'package:flutter/cupertino.dart';
-
 import '../../profile/profile.dart';
 import '../../shop/shop.dart';
-import 'home.controller.dart';
 
-enum HomeNavigationItemId {
-  home,
-  favorite,
-  ai_cook,
-  shop,
-  profile,
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-typedef HomeTabScreenBuilder = Widget Function(BuildContext context, Key key);
+class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
 
-class HomeNavigationItemConfig {
-  final HomeNavigationItemId id;
-  final String iconName;
-  final String title;
-  final HomeTabScreenBuilder screenBuilder;
-  final Widget Function(HomeController ctrl)? badgeBuilder;
+  // Список экранов для вкладок
+  static final List<Widget> _pages = <Widget>[
+    const MainMenu(),
+    const FavoritePage(),
+    const AiChatScreen(),
+    const ShopScreen(),
+    const ProfileScreen(),
+  ];
+
+  // Функция для обработки нажатия на вкладку
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: AppIcon('ic_home'),
+            label: 'Главная',
+          ),
+          BottomNavigationBarItem(
+            icon: AppIcon('ic_star'),
+            label: 'Избранное',
+          ),
+          BottomNavigationBarItem(
+            icon: AppIcon('ic_ai_cook'),
+            label: 'Ассистент',
+          ),
+          BottomNavigationBarItem(
+            icon: AppIcon('ic_basket'),
+            label: 'Магазин',
+          ),
+          BottomNavigationBarItem(
+            icon: AppIcon('ic_profile'),
+            label: 'Профиль',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        unselectedItemColor: Colors.grey[800],
+        backgroundColor: Colors.white,
+        onTap: _onItemTapped,
+      ),
+    );
+  }
 
 
-  HomeNavigationItemConfig({
-    required this.id,
-    required this.iconName,
-    required this.title,
-    required this.screenBuilder,
-    this.badgeBuilder,
-
-
-  });
 }
-
-final homeNavigationItems = <HomeNavigationItemConfig>[
-  HomeNavigationItemConfig(
-    id: HomeNavigationItemId.home,
-    iconName: 'ic_home',
-    title: 'Главная',
-    screenBuilder: (_, key) => MainMenu(key: key),
-  ),
-  HomeNavigationItemConfig(
-    id: HomeNavigationItemId.favorite,
-    iconName: 'ic_star',
-    title: 'Избранное',
-    screenBuilder: (_, key) => FavoritePage(key: key,
-    ),
-  ),
-  HomeNavigationItemConfig(
-    id: HomeNavigationItemId.ai_cook,
-    iconName: 'ic_ai_cook',
-    title: 'Ассистент',
-    screenBuilder: (_, key) => AiChatScreen(key: key,
-    ),
-  ),HomeNavigationItemConfig(
-    id: HomeNavigationItemId.shop,
-    iconName: 'ic_basket',
-    title: 'Магазин',
-    screenBuilder: (_, key) => ShopScreen(key: key,
-    ),
-  ),
-  HomeNavigationItemConfig(
-    id: HomeNavigationItemId.profile,
-    iconName: 'ic_profile',
-    title: 'Профиль',
-    screenBuilder: (_, key) => ProfileScreen(key: key,
-    ),
-  ),
-];

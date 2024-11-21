@@ -2,6 +2,9 @@ import 'package:cookly/src/feature/auth/presentation/widgets/app_icon.widget.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cookly/src/feature/auth/presentation/widgets/app_icon.widget.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../home/navigation/home_navigation_config.dart';
 
 class MainMenu extends StatelessWidget {
   const MainMenu ({super.key});
@@ -10,22 +13,21 @@ class MainMenu extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(23.0),
         child: ListView(
           children: [
             _buildGreetingSection(),
-            const SizedBox(height: 16),
+            const SizedBox(height: 28),
             _buildRecipeOfTheDay(),
-            const SizedBox(height: 16),
+            const SizedBox(height: 28),
             _buildSearchBar(),
-            const SizedBox(height: 16),
+            const SizedBox(height: 28),
             _buildCategories(),
-            const SizedBox(height: 16),
+            const SizedBox(height: 29),
             _buildPopularRecipes(),
           ],
         ),
       ),
-      bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
 
@@ -116,11 +118,11 @@ class MainMenu extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 12),
         Row(
           children: categories.map((category) {
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 4.0),
               child: Column(
                 children: [
                   CircleAvatar(
@@ -155,16 +157,22 @@ class MainMenu extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
+            Text(
               'Популярные рецепты',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+                style: GoogleFonts.montserrat(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+
+                )
             ),
             TextButton(
               onPressed: () {},
-              child: const Text('Посмотреть все'),
+              child: const Text('Посмотреть все',
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 9,
+                ),
+              ),
             ),
           ],
         ),
