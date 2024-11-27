@@ -9,7 +9,7 @@ class WelcomeScreen extends StatelessWidget {
         children: [
           Positioned.fill(
             child: Image.asset(
-              'assets/backgraund.png',
+              'assets/images/backgraund.png',
               fit: BoxFit.cover,
             ),
           ),
@@ -53,7 +53,7 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/auth');
+                        Navigator.pushNamed(context, '/navBar');
                       },
                       child: const Text(
                         'Продолжить',

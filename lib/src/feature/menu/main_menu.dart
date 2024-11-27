@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cookly/src/feature/auth/presentation/widgets/app_icon.widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../widget/categories_widget.dart';
 import '../home/navigation/home_navigation_config.dart';
 
 class MainMenu extends StatelessWidget {
@@ -22,7 +23,7 @@ class MainMenu extends StatelessWidget {
             const SizedBox(height: 28),
             _buildSearchBar(),
             const SizedBox(height: 28),
-            _buildCategories(),
+            CategoriesWidget(),
             const SizedBox(height: 29),
             _buildPopularRecipes(),
           ],
@@ -72,7 +73,8 @@ class MainMenu extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              },
             child: const Text('Приготовить',
               style: TextStyle(
                 color: Colors.white,
@@ -133,7 +135,17 @@ class MainMenu extends StatelessWidget {
                   CircleAvatar(
                     backgroundColor: Colors.grey[200],
                     radius: 30,
-                    child: Icon(category['icon'] as IconData, color: Colors.black),
+                    child: IconButton(
+                      icon: Icon(category['icon'] as IconData),
+                      color: Colors.black,
+                      onPressed: () {
+                        print('Выбрано: ${category['label']}');
+                        print('Выбрано: ${category['label']}');
+                        print('Выбрано: ${category['label']}');
+                        print('Выбрано: ${category['label']}');
+                        print('Выбрано: ${category['label']}');
+                      },
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(category['label'] as String,
