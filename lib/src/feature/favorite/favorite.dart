@@ -12,6 +12,8 @@ class FavoritePage extends StatelessWidget {
         title: const Text("Избранное", style: TextStyle(fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold)),
         centerTitle: true,
         elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.white), // Цвет кнопки "назад"
+
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

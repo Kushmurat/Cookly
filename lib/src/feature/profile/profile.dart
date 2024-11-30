@@ -20,6 +20,8 @@ class ProfileScreen extends StatelessWidget {
         ),
         centerTitle: true,
         elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.white), // Цвет кнопки "назад"
+
       ),
       backgroundColor: const Color(0xFFF5F5F5), // фон страницы
       body: SingleChildScrollView( // Добавляем прокрутку

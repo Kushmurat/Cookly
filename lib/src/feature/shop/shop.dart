@@ -18,17 +18,17 @@ class ShopScreen extends StatelessWidget {
 
   static const List<String> _categoryImages = [
     "assets/images/m_shop.png",
-    "assets/images/vegetables_shop.png",
-    "assets/images/milk_shop.png",
-    "assets/images/bread_shop.png",
-    "assets/images/meat_shop.png",
-    "assets/images/fish_shop.png",
-    "assets/images/krupa_shop.png",
-    "assets/images/sweet_shop.png",
-    "assets/images/food_shop.png",
-    "assets/images/freeze_shop.png",
-    "assets/images/drinks_shop.png",
-    "assets/images/flawors_shop.png",
+    "assets/images/shop_vegetables.png",
+    "assets/images/shop_milk.png",
+    "assets/images/shop_bakery.png",
+    "assets/images/shop_meat.png",
+    "assets/images/shop_fish.png",
+    "assets/images/shop_krupa.png",
+    "assets/images/shop_sweets.png",
+    "assets/images/shop_food.png",
+    "assets/images/shop_freeze.png",
+    "assets/images/shop_drinks.png",
+    "assets/images/shop_spices.png",
   ];
 
   static const List<EdgeInsets> _categoryTextMargins = [
@@ -70,6 +70,8 @@ class ShopScreen extends StatelessWidget {
           ],
         ),
         elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.white), // Цвет кнопки "назад"
+
       ),
       backgroundColor: const Color(0xFFF5F5F5),
       body: Stack(

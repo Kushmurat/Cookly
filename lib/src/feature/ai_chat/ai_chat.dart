@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../services/api_chatGPT.dart';
+
 
 class AiChatScreen extends StatefulWidget {
   @override
