@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../app/app.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -54,9 +55,9 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 16),
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           'Имя Фамилия',
                           style: TextStyle(
@@ -78,14 +79,20 @@ class ProfileScreen extends StatelessWidget {
                     const Spacer(),
                     IconButton(
                       icon: const Icon(Icons.edit, color: Colors.orange),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const App(), // Здесь ваш целевой экран
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
               ),
             ),
             const SizedBox(height: 24),
-
             // Заголовок Аккаунт
             const Padding(
               padding: EdgeInsets.only(left: 8.0),
@@ -197,7 +204,7 @@ class ProfileScreen extends StatelessWidget {
 
   // Виджет для полоски с высотой 0.3
   Widget buildDivider() {
-    return Divider(
+    return const Divider(
       color: Colors.grey,
       height: 0.3,
       thickness: 0.3, // Толщина полоски

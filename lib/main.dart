@@ -1,6 +1,7 @@
 import 'package:cookly/presentation/auth/registration.dart';
 import 'package:cookly/presentation/auth/splash_screen.dart';
 import 'package:cookly/presentation/auth/welcome_screen.dart';
+import 'package:cookly/src/feature/auth/presentation/screens/sign_in/sign_in_screen.dart';
 import 'package:cookly/src/feature/home/navigation/home_navigation_config.dart';
 import 'package:cookly/src/feature/menu/main_menu.dart';
 import 'package:cookly/src/app/app.dart';

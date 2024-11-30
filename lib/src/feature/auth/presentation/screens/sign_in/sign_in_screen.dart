@@ -188,7 +188,6 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  // Нижняя часть: текст "Нет персонального аккаунта?"
                   const Text('Нет персонального аккаунта?'),
                   TextButton(
                     onPressed: () {

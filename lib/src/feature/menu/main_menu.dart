@@ -74,6 +74,7 @@ class MainMenu extends StatelessWidget {
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
+
               },
             child: const Text('Приготовить',
               style: TextStyle(
@@ -183,7 +184,6 @@ class MainMenu extends StatelessWidget {
                 style: GoogleFonts.montserrat(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-
                 )
             ),
             TextButton(
@@ -220,7 +220,6 @@ class MainMenu extends StatelessWidget {
       ],
     );
   }
-
   Widget _buildRecipeCard(String title, String time, String image) {
     return Container(
       decoration: BoxDecoration(
