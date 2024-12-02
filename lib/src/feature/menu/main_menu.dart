@@ -107,61 +107,6 @@ class MainMenu extends StatelessWidget {
     );
   }
 
-  Widget _buildCategories() {
-    final categories = [
-      {'icon': Icons.breakfast_dining, 'label': 'Завтрак'},
-      {'icon': Icons.lunch_dining, 'label': 'Обед'},
-      {'icon': Icons.dinner_dining, 'label': 'Ужин'},
-      {'icon': Icons.cake, 'label': 'Десерты'},
-      {'icon': Icons.soup_kitchen, 'label': 'Салаты'},
-    ];
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Категории',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 12),
-        Row(
-          children: categories.map((category) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4.0),
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.grey[200],
-                    radius: 30,
-                    child: IconButton(
-                      icon: Icon(category['icon'] as IconData),
-                      color: Colors.black,
-                      onPressed: () {
-                        print('Выбрано: ${category['label']}');
-                        print('Выбрано: ${category['label']}');
-                        print('Выбрано: ${category['label']}');
-                        print('Выбрано: ${category['label']}');
-                        print('Выбрано: ${category['label']}');
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(category['label'] as String,
-                    style: const TextStyle(
-                      fontSize: 10,
-                    ),
-                  ),
-                ],
-              ),
-            );
-          }).toList(),
-        ),
-      ],
-    );
-  }
 
   Widget _buildPopularRecipes() {
     final recipes = [

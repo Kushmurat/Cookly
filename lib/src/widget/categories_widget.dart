@@ -10,29 +10,29 @@ class CategoriesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final categories = [
       {
-        'icon': Icons.breakfast_dining,
+        'image': 'assets/images/ic_breakfast.png',
         'label': 'Завтрак',
-        'page': BreakfastPage(), // Страница для "Завтрак"
+        'page': BreakfastPage(),
       },
       {
-        'icon': Icons.lunch_dining,
+        'image': 'assets/images/ic_lunch.png',
         'label': 'Обед',
-        'page': LunchPage(), // Страница для "Обед"
+        'page': LunchPage(),
       },
       {
-        'icon': Icons.dinner_dining,
+        'image': 'assets/images/ic_dinner.png',
         'label': 'Ужин',
-        'page': DinnerPage(), // Страница для "Ужин"
+        'page': DinnerPage(),
       },
       {
-        'icon': Icons.cake,
+        'image': 'assets/images/ic_dessert.png',
         'label': 'Десерты',
-        'page': DessertPage(), // Страница для "Десерты"
+        'page': DessertPage(),
       },
       {
-        'icon': Icons.soup_kitchen,
+        'image': 'assets/images/ic_salad.png',
         'label': 'Салаты',
-        'page': SaladPage(), // Страница для "Салаты"
+        'page': SaladPage(),
       },
     ];
 
@@ -48,26 +48,29 @@ class CategoriesWidget extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: categories.map((category) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => category['page'] as Widget,
+                  ),
+                );
+              },
               child: Column(
                 children: [
                   CircleAvatar(
                     backgroundColor: Colors.grey[200],
                     radius: 30,
-                    child: IconButton(
-                      icon: Icon(category['icon'] as IconData),
-                      color: Colors.black,
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                            category['page'] as Widget,
-                          ),
-                        );
-                      },
+                    child: ClipOval(
+                      child: Image.asset(
+                        category['image'] as String,
+                        fit: BoxFit.cover,
+                        width: 38,
+                        height: 38,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -86,6 +89,3 @@ class CategoriesWidget extends StatelessWidget {
     );
   }
 }
-
-
-
