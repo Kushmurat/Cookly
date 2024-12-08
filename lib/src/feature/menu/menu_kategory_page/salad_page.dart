@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../home/recipes/salad/salad_avocado.dart';
+import '../../home/recipes/salad/salad_caesar.dart';
+import '../../home/recipes/salad/salad_greece.dart';
+import '../../home/recipes/salad/salad_hurma.dart';
+import '../../home/recipes/salad/salad_strawberry.dart';
+
 class SaladPage extends StatelessWidget {
   const SaladPage({super.key});
 
@@ -79,79 +85,114 @@ Widget Recipes({required double cardWidth, required double cardHeight}) {
     itemBuilder: (BuildContext context, int index) {
       final recipe = recipes[index];
       return _buildRecipeCard(
-        recipe['title']!,
-        recipe['time']!,
-        recipe['image']!,
-        cardWidth,
-        cardHeight,
+          recipe['title']!,
+          recipe['time']!,
+          recipe['image']!,
+          cardWidth,
+          cardHeight,
+          context
       );
     },
   );
 }
 
-Widget _buildRecipeCard(String title, String time, String image, double width, double height) {
-  return Container(
-    width: width,
-    height: height,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(16),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withOpacity(0.50),
-          offset: const Offset(0, 2),
-          blurRadius: 4,
+Widget _buildRecipeCard(String title, String time, String image, double width, double height, BuildContext context) {
+  return GestureDetector(
+    onTap: () {
+      // Настраиваем переход для каждой карточки
+      if (title == 'Салат Цезарь с Курицей') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) =>  const CaesarPage()),
+        );
+      } else if (title == 'Салат с Клубникой и Шпинатом') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const StrawberryPage()),
+        );
+      } else if (title == 'Греческий салат') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const GreecePage()),
+        );
+      } else if (title == 'Салат с Авокадо и Грейпфрутом') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const AvocadoPage()),
+        );
+      } else if (title == 'Салат грузинский с баклажанами') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const GreecePage()),
+        );
+      } else if (title == 'Салат с хурмой и сыром') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const HurmaPage()),
+        );
+      }
+    },
+    child: Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.50),
+            offset: const Offset(0, 2),
+            blurRadius: 4,
+          ),
+        ],
+        image: DecorationImage(
+          image: AssetImage(image),
+          fit: BoxFit.cover,
         ),
-      ],
-      image: DecorationImage(
-        image: AssetImage(image),
-        fit: BoxFit.cover,
       ),
-    ),
-    child: Stack(
-      children: [
-        Positioned(
-          top: 8,
-          left: 8,
-          right: 30,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 7),
-            constraints: const BoxConstraints(maxWidth: 120),
-            decoration: BoxDecoration(
-            ),
-            child: Text(
-              title,
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                overflow: TextOverflow.ellipsis,
+      child: Stack(
+        children: [
+          Positioned(
+            top: 8,
+            left: 8,
+            right: 30,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 7),
+              constraints: const BoxConstraints(maxWidth: 120),
+              child: Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                maxLines: 3,
               ),
-              maxLines: 3,
             ),
           ),
-        ),
-        Positioned(
-          bottom: 8,
-          left: 8,
-          child: Row(
-            children: [
-              const Icon(Icons.timer, color: Colors.white),
-              const SizedBox(width: 4),
-              Text(
-                time,
-                style: const TextStyle(color: Colors.white),
-              ),
-            ],
+          Positioned(
+            bottom: 8,
+            left: 8,
+            child: Row(
+              children: [
+                const Icon(Icons.timer, color: Colors.white),
+                const SizedBox(width: 4),
+                Text(
+                  time,
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
           ),
-        ),
-        const Positioned(
-          top: 8,
-          right: 8,
-          child: Icon(
-            Icons.star_border,
-            color: Colors.white,
+          const Positioned(
+            top: 8,
+            right: 8,
+            child: Icon(
+              Icons.star_border,
+              color: Colors.white,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
   );
 }

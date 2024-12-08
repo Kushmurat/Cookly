@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../home/recipes/dinner/dinner_bulgur.dart';
+import '../../home/recipes/dinner/dinner_gulyash.dart';
+import '../../home/recipes/dinner/dinner_nail.dart';
+import '../../home/recipes/dinner/dinner_soup.dart';
+import '../../home/recipes/dinner/dinner_spinach.dart';
+import '../../home/recipes/dinner/dinner_tofu.dart';
+
 class DinnerPage extends StatelessWidget {
   const DinnerPage({super.key});
 
@@ -79,79 +86,114 @@ Widget Recipes({required double cardWidth, required double cardHeight}) {
     itemBuilder: (BuildContext context, int index) {
       final recipe = recipes[index];
       return _buildRecipeCard(
-        recipe['title']!,
-        recipe['time']!,
-        recipe['image']!,
-        cardWidth,
-        cardHeight,
+          recipe['title']!,
+          recipe['time']!,
+          recipe['image']!,
+          cardWidth,
+          cardHeight,
+          context
       );
     },
   );
 }
 
-Widget _buildRecipeCard(String title, String time, String image, double width, double height) {
-  return Container(
-    width: width,
-    height: height,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(16),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withOpacity(0.50),
-          offset: const Offset(0, 2),
-          blurRadius: 4,
+Widget _buildRecipeCard(String title, String time, String image, double width, double height, BuildContext context) {
+  return GestureDetector(
+    onTap: () {
+      // Настраиваем переход для каждой карточки
+      if (title == 'Жареный тофу с рисом') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) =>  const TofuPage()),
+        );
+      } else if (title == 'Гуйру лагман') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const NailPage()),
+        );
+      } else if (title == 'Булгур с курицей и овощами') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const BulgurPage()),
+        );
+      } else if (title == 'Паста со шпинатом и ветчиной') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const SpinachPage()),
+        );
+      } else if (title == 'Гуляш из говядины') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const GulyashPage()),
+        );
+      } else if (title == 'Чечевичный крем-суп') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const SoupPage()),
+        );
+      }
+    },
+    child: Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.50),
+            offset: const Offset(0, 2),
+            blurRadius: 4,
+          ),
+        ],
+        image: DecorationImage(
+          image: AssetImage(image),
+          fit: BoxFit.cover,
         ),
-      ],
-      image: DecorationImage(
-        image: AssetImage(image),
-        fit: BoxFit.cover,
       ),
-    ),
-    child: Stack(
-      children: [
-        Positioned(
-          top: 8,
-          left: 8,
-          right: 30,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 7),
-            constraints: const BoxConstraints(maxWidth: 120),
-            decoration: BoxDecoration(
-            ),
-            child: Text(
-              title,
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                overflow: TextOverflow.ellipsis,
+      child: Stack(
+        children: [
+          Positioned(
+            top: 8,
+            left: 8,
+            right: 30,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 7),
+              constraints: const BoxConstraints(maxWidth: 120),
+              child: Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                maxLines: 3,
               ),
-              maxLines: 3,
             ),
           ),
-        ),
-        Positioned(
-          bottom: 8,
-          left: 8,
-          child: Row(
-            children: [
-              const Icon(Icons.timer, color: Colors.white),
-              const SizedBox(width: 4),
-              Text(
-                time,
-                style: const TextStyle(color: Colors.white),
-              ),
-            ],
+          Positioned(
+            bottom: 8,
+            left: 8,
+            child: Row(
+              children: [
+                const Icon(Icons.timer, color: Colors.white),
+                const SizedBox(width: 4),
+                Text(
+                  time,
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
           ),
-        ),
-        const Positioned(
-          top: 8,
-          right: 8,
-          child: Icon(
-            Icons.star_border,
-            color: Colors.white,
+          const Positioned(
+            top: 8,
+            right: 8,
+            child: Icon(
+              Icons.star_border,
+              color: Colors.white,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
   );
 }
