@@ -18,7 +18,7 @@ class KesadillaPage extends StatelessWidget {
                     bottomRight: Radius.circular(30),
                   ),
                   child: Image.asset(
-                    'assets/images/breakfast_kesadilya.png',
+                    'assets/images/breakfast_american.png',
                     width: double.infinity,
                     height: 229,
                     fit: BoxFit.cover,
@@ -73,76 +73,86 @@ class KesadillaPage extends StatelessWidget {
                   SizedBox(height: 8),
                   Text(
                     'Кесадилья с яйцом — это простой и сытный перекус. Начинка из яичницы, сыра и помидоров заворачивается в тортилью и обжаривается до хрустящей корочки.',
-                    textAlign: TextAlign.left, // Выравнивание по левому краю
+                    textAlign: TextAlign.left,
                     style: TextStyle(fontSize: 16),
                   ),
                 ],
               ),
             ),
 
-            // Ингредиенты
+            // Ингредиенты и кнопка
             Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Ингредиенты',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 8),
-                  _buildIngredientRow('Тортилья', '200 г'),
-                  _buildIngredientRow('Яйцо', '1 шт'),
-                  _buildIngredientRow('Сыр пармезан (натертый)', '40 г'),
-                  _buildIngredientRow('Помидор', '1 шт'),
-                  _buildIngredientRow('Оливковое масло', '2 ст. ложки'),
-                ],
-              ),
-            ),
-
-            // Кнопка "Добавить в корзину"
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 45.0),
-              child: SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  onPressed: () {},
-                  icon: Icon(Icons.shopping_cart, color: Colors.white),
-                  label: Text(
-                    'Добавить в корзину',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orange,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+              padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0),
+              child: Container(
+                padding: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Ингредиенты',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
-                  ),
+                    SizedBox(height: 8),
+                    _buildIngredientRow('Тортилья', '200 г'),
+                    _buildIngredientRow('Яйцо', '1 шт'),
+                    _buildIngredientRow('Сыр пармезан (натертый)', '40 г'),
+                    _buildIngredientRow('Помидор', '1 шт'),
+                    _buildIngredientRow('Оливковое масло', '2 ст. ложки'),
+                    SizedBox(height: 16),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton.icon(
+                        onPressed: () {},
+                        icon: Icon(Icons.shopping_cart, color: Colors.white),
+                        label: Text(
+                          'Добавить в корзину',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.orange,
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
 
             // Приготовление
             Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Приготовление',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 8),
-                  _buildStep(1, 'Подготовка начинки',
-                      'Нарежьте помидор мелкими кубиками. Тёртый сыр приготовьте заранее.'),
-                  _buildStep(2, 'Обжарка яйца',
-                      'На разогретой сковороде с небольшим количеством масла обжарьте яйцо, слегка помешивая.'),
-                  _buildStep(3, 'Сборка кесадильи',
-                      'На одну половину тортильи выложите обжаренное яйцо, помидоры и сыр.'),
-                  _buildStep(4, 'Обжаривание кесадильи',
-                      'Обжарьте кесадилью на сковороде до золотистой корочки с обеих сторон.'),
-                ],
+              padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0),
+              child: Container(
+                padding: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Приготовление',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 8),
+                    _buildStep(1, 'Подготовка начинки',
+                        'Нарежьте помидор мелкими кубиками. Тёртый сыр приготовьте заранее.'),
+                    _buildStep(2, 'Обжарка яйца',
+                        'На разогретой сковороде с небольшим количеством масла обжарьте яйцо, слегка помешивая.'),
+                    _buildStep(3, 'Сборка кесадильи',
+                        'На одну половину тортильи выложите обжаренное яйцо, помидоры и сыр.'),
+                    _buildStep(4, 'Обжаривание кесадильи',
+                        'Обжарьте кесадилью на сковороде до золотистой корочки с обеих сторон.'),
+                  ],
+                ),
               ),
             ),
           ],
