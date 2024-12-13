@@ -4,6 +4,7 @@ class KesadillaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF5F5F5), // Цвет заднего фона
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -11,11 +12,17 @@ class KesadillaPage extends StatelessWidget {
             // Изображение
             Stack(
               children: [
-                Image.asset(
-                  'assets/images/recipe.jpg',
-                  width: double.infinity,
-                  height: 250,
-                  fit: BoxFit.cover,
+                ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30),
+                  ),
+                  child: Image.asset(
+                    'assets/images/breakfast_kesadilya.png',
+                    width: double.infinity,
+                    height: 229,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 Positioned(
                   top: 40,
@@ -37,14 +44,16 @@ class KesadillaPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     'Кесадилья с яйцом',
+                    textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildMetaInfo(icon: Icons.access_time, text: '10 мин'),
                       SizedBox(width: 16),
@@ -54,13 +63,17 @@ class KesadillaPage extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 16),
-                  Text(
-                    'Описание',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Описание',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
                   ),
                   SizedBox(height: 8),
                   Text(
                     'Кесадилья с яйцом — это простой и сытный перекус. Начинка из яичницы, сыра и помидоров заворачивается в тортилью и обжаривается до хрустящей корочки.',
+                    textAlign: TextAlign.left, // Выравнивание по левому краю
                     style: TextStyle(fontSize: 16),
                   ),
                 ],
@@ -87,18 +100,26 @@ class KesadillaPage extends StatelessWidget {
               ),
             ),
 
-            // Кнопка
+            // Кнопка "Добавить в корзину"
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+              padding: const EdgeInsets.symmetric(horizontal: 45.0),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: () {},
+                  icon: Icon(Icons.shopping_cart, color: Colors.white),
+                  label: Text(
+                    'Добавить в корзину',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orange,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                   ),
                 ),
-                child: Text('Добавить в корзину'),
               ),
             ),
 
@@ -113,13 +134,13 @@ class KesadillaPage extends StatelessWidget {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
-                  _buildStep('Подготовка начинки',
+                  _buildStep(1, 'Подготовка начинки',
                       'Нарежьте помидор мелкими кубиками. Тёртый сыр приготовьте заранее.'),
-                  _buildStep('Обжарка яйца',
+                  _buildStep(2, 'Обжарка яйца',
                       'На разогретой сковороде с небольшим количеством масла обжарьте яйцо, слегка помешивая.'),
-                  _buildStep('Сборка кесадильи',
+                  _buildStep(3, 'Сборка кесадильи',
                       'На одну половину тортильи выложите обжаренное яйцо, помидоры и сыр.'),
-                  _buildStep('Обжаривание кесадильи',
+                  _buildStep(4, 'Обжаривание кесадильи',
                       'Обжарьте кесадилью на сковороде до золотистой корочки с обеих сторон.'),
                 ],
               ),
@@ -144,25 +165,34 @@ class KesadillaPage extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(name, style: TextStyle(fontSize: 16)),
+        Text(name, style: TextStyle(fontSize: 16, color: Colors.orange)), // Названия ингредиентов оранжевого цвета
         Text(amount, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
       ],
     );
   }
 
-  Widget _buildStep(String title, String description) {
+  Widget _buildStep(int stepNumber, String title, String description) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(
-            radius: 12,
-            backgroundColor: Colors.orange,
-            child: Text(
-              'Ш',
-              style: TextStyle(color: Colors.white, fontSize: 12),
-            ),
+          Column(
+            children: [
+              CircleAvatar(
+                radius: 12,
+                backgroundColor: Colors.orange,
+                child: Text(
+                  '$stepNumber',
+                  style: TextStyle(color: Colors.white, fontSize: 12),
+                ),
+              ),
+              SizedBox(height: 4),
+              Text(
+                'Шаг $stepNumber',
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
           SizedBox(width: 8),
           Expanded(
