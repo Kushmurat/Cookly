@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../home/recipes/salad/salad_avocado.dart';
 import '../../home/recipes/salad/salad_caesar.dart';
 import '../../home/recipes/salad/salad_greece.dart';
+import '../../home/recipes/salad/salad_gruzin.dart';
 import '../../home/recipes/salad/salad_hurma.dart';
 import '../../home/recipes/salad/salad_strawberry.dart';
 
@@ -123,7 +124,7 @@ Widget _buildRecipeCard(String title, String time, String image, double width, d
       } else if (title == 'Салат грузинский с баклажанами') {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const GreecePage()),
+          MaterialPageRoute(builder: (context) => const GruzinPage()),
         );
       } else if (title == 'Салат с хурмой и сыром') {
         Navigator.push(
