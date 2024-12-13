@@ -18,7 +18,7 @@ class KesadillaPage extends StatelessWidget {
                     bottomRight: Radius.circular(30),
                   ),
                   child: Image.asset(
-                    'assets/images/breakfast_american.png',
+                    'assets/images/breakfast_kesadilya.png',
                     width: double.infinity,
                     height: 229,
                     fit: BoxFit.cover,
