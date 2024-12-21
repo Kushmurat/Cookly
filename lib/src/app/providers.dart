@@ -7,6 +7,9 @@ import '../feature/auth/data/data_sources/remote/auth_remote_impl.dart';
 import '../feature/auth/data/repositories/user_repository_impl.dart';
 import '../feature/auth/domain/use_cases/sign_in_use_case.dart';
 import '../feature/auth/domain/use_cases/sign_up_use_case.dart';
+import '../feature/category/data/data_sources/remote/category_remote_impl.dart';
+import '../feature/category/data/repositories/category_repository_impl.dart';
+import '../feature/category/domain/use_cases/get_recipes_by_category_use_case.dart';
 import 'auth_holder.dart';
 import 'config.dart';
 
@@ -45,11 +48,18 @@ final _dataSource = [
   Provider(
     create: (context) => AuthRemoteImpl(context.read<RemoteClient>()),
   ),
+  Provider(
+    create: (context) => CategoryRemoteImpl(context.read<RemoteClient>()),
+  ),
 ];
 
 final _repositories = [
   Provider(
     create: (context) => UserRepositoryImpl(context.read<AuthRemoteImpl>()),
+  ),
+  Provider(
+    create: (context) =>
+        CategoryRepositoryImpl(context.read<CategoryRemoteImpl>()),
   ),
 ];
 
@@ -61,5 +71,10 @@ final _useCases = [
   Provider<SignUpUseCase>(
     lazy: true,
     create: (context) => SignUpUseCase(context.read<UserRepositoryImpl>()),
+  ),
+  Provider<GetRecipesByCategoryUseCase>(
+    lazy: true,
+    create: (context) =>
+        GetRecipesByCategoryUseCase(context.read<CategoryRepositoryImpl>()),
   ),
 ];

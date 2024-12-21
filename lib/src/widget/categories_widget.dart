@@ -1,4 +1,7 @@
+import 'package:cookly/main.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../feature/category/presentation/widgets/resipes_preview_screen.dart';
 import '../feature/menu/menu_kategory_page/breakfast_page.dart';
 import '../feature/menu/menu_kategory_page/dessert_page.dart';
 import '../feature/menu/menu_kategory_page/dinner_page.dart';
@@ -6,13 +9,18 @@ import '../feature/menu/menu_kategory_page/lunch_page.dart';
 import '../feature/menu/menu_kategory_page/salad_page.dart';
 
 class CategoriesWidget extends StatelessWidget {
+  const CategoriesWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     final categories = [
       {
         'image': 'assets/images/ic_breakfast.png',
         'label': 'Завтрак',
-        'page': BreakfastPage(),
+        'page': RecipesPreviewScreen(
+          category: 'breakfast',
+          getRecipesByCategory: context.read(),
+        ),
       },
       {
         'image': 'assets/images/ic_lunch.png',
