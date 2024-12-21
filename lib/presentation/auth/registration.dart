@@ -24,7 +24,7 @@ class RegScreen extends StatelessWidget {
                   icon: Icon(Icons.arrow_back),
                   color: Colors.orange,
                   onPressed: () {
-                    Navigator.pushNamed(context,'/auth'); // Возвращаемся на предыдущий экран
+                    Navigator.pop(context);
                   },
                 ),
               ),

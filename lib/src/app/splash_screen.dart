@@ -2,34 +2,38 @@ import 'dart:async';
 import 'package:cookly/presentation/auth/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-
-class Landing extends StatelessWidget {
-  const Landing({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
+import 'auth_holder.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key});
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  late final AuthHolder authHolder;
+
   @override
   void initState() {
     super.initState();
-    Timer(
-      const Duration(seconds: 2),
-          () {
-        Navigator.pushReplacementNamed(context,'/');
-      },
-    );
+    authHolder = context.read();
+    Timer(const Duration(seconds: 2), _replaceRout);
+  }
+
+  void _replaceRout() async {
+    if (authHolder.isAuthorized) {
+      Navigator.pushReplacementNamed(context, '/main');
+      return;
+    }
+    if (authHolder.isUnauthorized) {
+      Navigator.pushReplacementNamed(context, '/sign_in');
+      return;
+    }
+    await authHolder.initialize();
+    _replaceRout();
   }
 
   @override
@@ -48,6 +52,8 @@ class _SplashScreenState extends State<SplashScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            const SizedBox(height: 10),
+            const CircularProgressIndicator(),
           ],
         ),
       ),

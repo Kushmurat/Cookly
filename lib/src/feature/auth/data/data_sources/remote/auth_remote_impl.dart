@@ -1,25 +1,31 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:cookly/src/core/http/http.dart';
 import 'package:cookly/src/feature/auth/data/models/requests/create_user_remote_request.dart';
 import 'package:cookly/src/feature/auth/data/models/requests/sign_in_remote_request.dart';
+import 'package:cookly/src/feature/auth/data/models/responses/auth.dart';
 import 'package:cookly/src/feature/auth/data/models/responses/user_response.dart';
 
-import 'i_user_remote.dart';
+import '../../../../../core/clients/remote/remote_client.dart';
+import 'i_auth_remote.dart';
 
-class UserRemoteImpl extends IUserRemote {
-  UserRemoteImpl(this.http);
+class AuthRemoteImpl implements IAuthRemote {
+  AuthRemoteImpl(this.remote);
 
-  final Http http;
+  final RemoteClient remote;
 
   @override
   Future<UserResponse> signIn(SignInRemoteRequest request) async {
     try {
       final data = jsonEncode(request.toJson());
-      final response = await http.post('/login/', data);
-      final userJson = response.data['user'];
-      final userResponse = UserResponse.fromJson(userJson);
+      final response = await remote.post('/login/', data: data);
+      final json = response.data;
+
+      final Auth auth = Auth.fromJson(json);
+
+      remote.setToken(auth.access);
+
+      final userResponse = auth.user;
       return userResponse;
     } catch (error, stackTrace) {
       log(
@@ -34,7 +40,7 @@ class UserRemoteImpl extends IUserRemote {
   Future<UserResponse> signUp(CreateUserRemoteRequest request) async {
     try {
       final data = jsonEncode(request.toJson());
-      final response = await http.post('/register/', data);
+      final response = await remote.post('/register/', data: data);
       final userResponse = UserResponse.fromJson(response.data);
       return userResponse;
     } catch (error, stackTrace) {
@@ -44,5 +50,17 @@ class UserRemoteImpl extends IUserRemote {
       );
       rethrow;
     }
+  }
+
+  @override
+  Future<void> signOut() {
+    // TODO: implement signOut
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> refreshToken() {
+    // TODO: implement refreshToken
+    throw UnimplementedError();
   }
 }

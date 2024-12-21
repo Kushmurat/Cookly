@@ -8,12 +8,12 @@ import 'package:cookly/src/feature/auth/domain/repositories/i_user_repository.da
 import '../converctors/create_user_to_remote_request.dart';
 import '../converctors/sign_in_remote_request.dart';
 import '../converctors/user_response_to_entity.dart';
-import '../data_sources/remote/i_user_remote.dart';
+import '../data_sources/remote/i_auth_remote.dart';
 
 class UserRepositoryImpl extends IUserRepository {
   UserRepositoryImpl(this.remote);
 
-  final IUserRemote remote;
+  final IAuthRemote remote;
 
   @override
   Future<User> signIn(SingInRequest request) async {

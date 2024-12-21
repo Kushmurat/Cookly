@@ -1,11 +1,11 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as dio;
 
-Future<http.Response?> loginUser(String email, String password) async {
+Future<dio.Response?> loginUser(String email, String password) async {
   print('wow email: $email');
   print('wow pas: $password');
   try {
-    final response = await http.post(
+    final response = await dio.post(
       Uri.parse('https://cookly-andas-decode.vercel.app/login/'), // Укажите реальный URL для входа
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({'username': email, 'password': password}),
@@ -25,10 +25,10 @@ Future<http.Response?> loginUser(String email, String password) async {
     return null;
   }
 }
-Future<http.Response?> registerUser(String email, String username, String password) async {
+Future<dio.Response?> registerUser(String email, String username, String password) async {
   try {
     print('wow email: $email');
-    final response = await http.post(
+    final response = await dio.post(
       Uri.parse('https://cookly-andas-decode.vercel.app/register/'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({'email': email, 'username': email, 'password': password}),
