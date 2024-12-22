@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 class RecipePreviewRemoteResponse {
   RecipePreviewRemoteResponse({
     required this.id,
@@ -7,13 +9,13 @@ class RecipePreviewRemoteResponse {
     required this.isFavorite,
   });
 
-  factory RecipePreviewRemoteResponse.fromJson(Map<String, dynamic> json) {
+  factory RecipePreviewRemoteResponse.fromJson(Map<String, dynamic>json){
     return RecipePreviewRemoteResponse(
-      id: json['id'],
-      name: json['name'],
-      image: json['image'],
-      cookingTime: json['cooking_time'],
-      isFavorite: json['is_favorite'],
+        id: json['id'],
+        name: json['name'],
+        cookingTime: json['cooking_time'],
+        image: json['image'],
+        isFavorite: json['is_favourite'],
     );
   }
 
@@ -22,4 +24,6 @@ class RecipePreviewRemoteResponse {
   final String image;
   final int cookingTime;
   final bool isFavorite;
+
 }
+

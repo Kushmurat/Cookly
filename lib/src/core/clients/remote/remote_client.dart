@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:cookly/src/core/services/local_storage/local_storage.dart';
 import 'package:dio/dio.dart';
@@ -15,7 +16,6 @@ class RemoteClient {
         'Accept': 'application/json',
       },
     ));
-
     _dio.interceptors.add(LogInterceptor(
       request: true,
       requestHeader: true,
@@ -27,6 +27,8 @@ class RemoteClient {
 
     _dio.interceptors.add(InterceptorsWrapper(
       onError: (DioException e, handler) async {
+        return;
+
         if (e.response?.statusCode == 401) {
           final newToken = await refreshAuthToken();
           setToken(newToken);
@@ -58,15 +60,14 @@ class RemoteClient {
   static const accessLocalStorageKey = 'access';
   static const refreshLocalStorageKey = 'refresh';
 
-  initialize() async {
-    final accessToken = localStorage.getString(accessLocalStorageKey);
-    if (accessToken != null) {
-      setToken(accessToken);
-    }
+  void setToken(String token) {
+    log('wow token: $token');
+    _dio.options.headers[headerAuth] = 'Bearer $token';
+    localStorage.putString(accessLocalStorageKey, token);
   }
 
-  void setToken(String token) {
-    _dio.options.headers[headerAuth] = 'Bearer $token';
+  void setRefresh(String token) {
+    localStorage.putString(refreshLocalStorageKey, token);
   }
 
   Future<Response> get(String path) async {

@@ -1,9 +1,30 @@
 import 'dart:developer';
 
+import 'package:cookly/src/app/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-class WelcomeScreen extends StatelessWidget {
+import '../../src/core/clients/remote/remote_client.dart';
+import '../../src/feature/auth/domain/use_cases/sign_in_use_case.dart';
+
+class WelcomeScreen extends StatefulWidget {
+  const WelcomeScreen({super.key});
+
+  @override
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

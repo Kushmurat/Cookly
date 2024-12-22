@@ -3,11 +3,11 @@ import 'package:cookly/src/feature/recipe/domain/use_cases/get_recipe_by_id_use_
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../auth/presentation/widgets/recipe.widget.dart';
-import '../../../recipe/presentation/recipe_controller.dart';
+import '../../auth/presentation/widgets/recipe.widget.dart';
+import 'recipe_controller.dart';
 
-class GruzinPage extends StatefulWidget {
-  const GruzinPage({
+class RecipeScreen extends StatefulWidget {
+  const RecipeScreen({
     required this.id,
     super.key,
   });
@@ -15,10 +15,10 @@ class GruzinPage extends StatefulWidget {
   final int id;
 
   @override
-  State<GruzinPage> createState() => _GruzinPageState();
+  State<RecipeScreen> createState() => _RecipeScreenState();
 }
 
-class _GruzinPageState extends State<GruzinPage> {
+class _RecipeScreenState extends State<RecipeScreen> {
   late final RecipeController controller;
 
   @override
@@ -87,15 +87,7 @@ class _GruzinPageState extends State<GruzinPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Center(
-                          child: Text(recipe.name,
-                            style: GoogleFonts.montserrat(
-                              fontSize: 19,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black87,
-                            ),
-                          ),
-                        ),
+                        buildText(recipe.name),
                         const SizedBox(height: 8),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,

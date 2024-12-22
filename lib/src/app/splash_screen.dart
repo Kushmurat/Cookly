@@ -1,9 +1,13 @@
 import 'dart:async';
 import 'package:cookly/presentation/auth/welcome_screen.dart';
+import 'package:cookly/src/app/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../core/clients/remote/remote_client.dart';
+import '../core/services/local_storage/local_storage.dart';
+import '../feature/auth/domain/use_cases/sign_in_use_case.dart';
 import 'auth_holder.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -19,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    authHolder = context.read();
+    authHolder = getIt();
     Timer(const Duration(seconds: 2), _replaceRout);
   }
 
@@ -38,6 +42,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('wow SplashScreen build');
+    final a = getIt<LocalStorage>();
+    print('wow SplashScreen a: ${a.runtimeType}');
+    final b = getIt<SignInUseCase>();
+    print('wow SignInUseCase b: ${b.runtimeType}');
     return Scaffold(
       backgroundColor: Colors.orange,
       body: Center(

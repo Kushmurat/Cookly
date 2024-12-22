@@ -25,6 +25,8 @@ dependencies:
   flutter_svg: ^0.23.0+1
   flutter_bloc: ^8.1.6
   shared_preferences: ^2.3.4
+  get_it: ^8.0.3
+  injectable: ^2.5.0
 
 
 
@@ -34,6 +36,8 @@ dev_dependencies:
 
 
   flutter_lints: ^4.0.0
+  build_runner: ^2.4.0
+  injectable_generator: ^2.6.2
 
 
 flutter:

@@ -6,6 +6,7 @@ import '../../home/recipes/ breakfast/egg_quesadilla.dart';
 import '../../home/recipes/ breakfast/kasha.dart';
 import '../../home/recipes/ breakfast/shakshuka.dart';
 import '../../home/recipes/ breakfast/syrniki.dart';
+import '../../recipe/presentation/recipe_screen.dart';
 
 class BreakfastPage extends StatelessWidget {
   const BreakfastPage({super.key});
@@ -65,19 +66,47 @@ class BreakfastPage extends StatelessWidget {
 
 Widget Recipes({required double cardWidth, required double cardHeight}) {
   final recipes = [
-    {'title': 'Кесадилья с яйцом', 'time': '10 мин', 'image': 'assets/images/breakfast_kesadilya.png'},
-    {'title': 'Американский завтрак', 'time': '10 мин', 'image': 'assets/images/breakfast_american.png'},
-    {'title': 'Авокадо - тост', 'time': '10 мин', 'image': 'assets/images/breakfast_tosts.png'},
-    {'title': 'Сырники из творога', 'time': '15 мин', 'image': 'assets/images/breakfast_pancakes.png'},
-    {'title': 'Овсяная каша на молоке', 'time': '10 мин', 'image': 'assets/images/breakfast_kasha.png'},
-    {'title': 'Шакшука', 'time': '20 мин', 'image': 'assets/images/breakfast_shaqsuka.png'},
+    {
+      'title': 'Кесадилья с яйцом',
+      'time': '10 мин',
+      'image': 'assets/images/breakfast_kesadilya.png'
+    },
+    {
+      'title': 'Американский завтрак',
+      'time': '10 мин',
+      'image': 'assets/images/breakfast_american.png'
+    },
+    {
+      'title': 'Авокадо - тост',
+      'time': '10 мин',
+      'image': 'assets/images/breakfast_tosts.png'
+    },
+    {
+      'title': 'Сырники из творога',
+      'time': '15 мин',
+      'image': 'assets/images/breakfast_pancakes.png'
+    },
+    {
+      'title': 'Овсяная каша на молоке',
+      'time': '10 мин',
+      'image': 'assets/images/breakfast_kasha.png'
+    },
+    {
+      'title': 'Шакшука',
+      'time': '20 мин',
+      'image': 'assets/images/breakfast_shakshuka.png'
+    },
   ];
 
   return GridView.builder(
     shrinkWrap: true,
     physics: const NeverScrollableScrollPhysics(),
     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: (MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.width / cardWidth).floor(),
+      crossAxisCount: (MediaQueryData.fromWindow(WidgetsBinding.instance.window)
+                  .size
+                  .width /
+              cardWidth)
+          .floor(),
       mainAxisSpacing: 8,
       crossAxisSpacing: 8,
       childAspectRatio: cardWidth / cardHeight,
@@ -85,31 +114,31 @@ Widget Recipes({required double cardWidth, required double cardHeight}) {
     itemCount: recipes.length,
     itemBuilder: (BuildContext context, int index) {
       final recipe = recipes[index];
-      return _buildRecipeCard(
-        recipe['title']!,
-        recipe['time']!,
-        recipe['image']!,
-        cardWidth,
-        cardHeight,
-        context
-      );
+      return _buildRecipeCard(recipe['title']!, recipe['time']!,
+          recipe['image']!, cardWidth, cardHeight, context);
     },
   );
 }
 
-Widget _buildRecipeCard(String title, String time, String image, double width, double height, BuildContext context) {
+Widget _buildRecipeCard(String title, String time, String image, double width,
+    double height, BuildContext context) {
   return GestureDetector(
     onTap: () {
       // Настраиваем переход для каждой карточки
       if (title == 'Кесадилья с яйцом') {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) =>  KesadillaPage()),
+          MaterialPageRoute(
+            builder: (context) => RecipeScreen(
+              id: 1,
+            ),
+          ),
         );
       } else if (title == 'Американский завтрак') {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const AmericanBreakfastPage()),
+          MaterialPageRoute(
+              builder: (context) => const AmericanBreakfastPage()),
         );
       } else if (title == 'Авокадо - тост') {
         Navigator.push(

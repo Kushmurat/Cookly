@@ -5,6 +5,7 @@ import 'package:cookly/src/feature/auth/data/models/requests/create_user_remote_
 import 'package:cookly/src/feature/auth/data/models/requests/sign_in_remote_request.dart';
 import 'package:cookly/src/feature/auth/data/models/responses/auth.dart';
 import 'package:cookly/src/feature/auth/data/models/responses/user_response.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../../core/clients/remote/remote_client.dart';
 import 'i_auth_remote.dart';
@@ -24,6 +25,7 @@ class AuthRemoteImpl implements IAuthRemote {
       final Auth auth = Auth.fromJson(json);
 
       remote.setToken(auth.access);
+      remote.setRefresh(auth.refresh);
 
       final userResponse = auth.user;
       return userResponse;

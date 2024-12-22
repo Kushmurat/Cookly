@@ -4,6 +4,7 @@ import 'package:cookly/src/feature/auth/domain/entities/requests/create_user_req
 import 'package:cookly/src/feature/auth/domain/entities/requests/sing_in_request.dart';
 import 'package:cookly/src/feature/auth/domain/entities/user.entity.dart';
 import 'package:cookly/src/feature/auth/domain/repositories/i_user_repository.dart';
+import 'package:injectable/injectable.dart';
 
 import '../converctors/create_user_to_remote_request.dart';
 import '../converctors/sign_in_remote_request.dart';

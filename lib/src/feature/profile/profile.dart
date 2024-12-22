@@ -1,7 +1,10 @@
+import 'dart:developer';
+
+import 'package:cookly/src/app/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../app/app.dart';
+import '../../app/auth_holder.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -21,11 +24,12 @@ class ProfileScreen extends StatelessWidget {
         ),
         centerTitle: true,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.white), // Цвет кнопки "назад"
-
+        iconTheme:
+            const IconThemeData(color: Colors.white), // Цвет кнопки "назад"
       ),
       backgroundColor: const Color(0xFFF5F5F5), // фон страницы
-      body: SingleChildScrollView( // Добавляем прокрутку
+      body: SingleChildScrollView(
+        // Добавляем прокрутку
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +38,8 @@ class ProfileScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 16.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 0.0, vertical: 16.0),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
@@ -79,14 +84,7 @@ class ProfileScreen extends StatelessWidget {
                     const Spacer(),
                     IconButton(
                       icon: const Icon(Icons.edit, color: Colors.orange),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const App(), // Здесь ваш целевой экран
-                          ),
-                        );
-                      },
+                      onPressed: () {},
                     ),
                   ],
                 ),
@@ -111,7 +109,8 @@ class ProfileScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 2.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 2.0),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
@@ -131,6 +130,12 @@ class ProfileScreen extends StatelessWidget {
                     buildListTile('Поделиться приложением', Icons.share),
                     buildDivider(),
                     buildListTile('Написать в поддержку', Icons.help_outline),
+                    buildDivider(),
+                    buildListTile('Logout', Icons.logout, onTap: () {
+                      final authHolder = getIt<AuthHolder>();
+                      authHolder.logout();
+                      Navigator.pushReplacementNamed(context, '/sign_in');
+                    }),
                   ],
                 ),
               ),
@@ -155,7 +160,8 @@ class ProfileScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 3.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 3.0),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
@@ -184,7 +190,11 @@ class ProfileScreen extends StatelessWidget {
   }
 
   // Виджет для каждой кнопки
-  Widget buildListTile(String title, IconData icon) {
+  Widget buildListTile(
+    String title,
+    IconData icon, {
+    VoidCallback? onTap,
+  }) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
       leading: Icon(icon, color: Colors.orange),
@@ -195,10 +205,9 @@ class ProfileScreen extends StatelessWidget {
           fontSize: 14,
         ),
       ),
-      trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
-      onTap: () {
-        // Обработчик нажатия
-      },
+      trailing:
+          const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+      onTap: onTap,
     );
   }
 

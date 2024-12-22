@@ -1,3 +1,4 @@
+import 'package:cookly/src/app/injection.dart';
 import 'package:cookly/src/feature/auth/presentation/screens/sign_in/sign_in_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,8 +22,8 @@ class _SignInScreenState extends State<SignInScreen> {
     // TODO: implement initState
     super.initState();
     ctrl = SignInController(
-      signInUseCase: context.read(),
-      authHolder: context.read(),
+      signInUseCase: getIt(),
+      authHolder: getIt(),
     );
   }
 

@@ -6,6 +6,7 @@ import '../../home/recipes/salad/salad_greece.dart';
 import '../../home/recipes/salad/salad_gruzin.dart';
 import '../../home/recipes/salad/salad_hurma.dart';
 import '../../home/recipes/salad/salad_strawberry.dart';
+import '../../recipe/presentation/recipe_screen.dart';
 
 class SaladPage extends StatelessWidget {
   const SaladPage({super.key});
@@ -104,32 +105,34 @@ Widget _buildRecipeCard(String title, String time, String image, double width, d
       if (title == 'Салат Цезарь с Курицей') {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) =>  const CaesarPage()),
+          MaterialPageRoute(builder: (context) =>  const RecipeScreen(
+            id: 1,
+          ),),
         );
       } else if (title == 'Салат с Клубникой и Шпинатом') {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const StrawberryPage()),
+          MaterialPageRoute(builder: (context) => const StrawberryPage(id: 3,)),
         );
       } else if (title == 'Греческий салат') {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const GreecePage()),
+          MaterialPageRoute(builder: (context) => const GreecePage(id: 2,)),
         );
       } else if (title == 'Салат с Авокадо и Грейпфрутом') {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const AvocadoPage()),
+          MaterialPageRoute(builder: (context) => const AvocadoPage(id: 4,)),
         );
       } else if (title == 'Салат грузинский с баклажанами') {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const GruzinPage()),
+          MaterialPageRoute(builder: (context) => const GruzinPage(id: 5,)),
         );
       } else if (title == 'Салат с хурмой и сыром') {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const HurmaPage()),
+          MaterialPageRoute(builder: (context) => const HurmaPage(id: 6,)),
         );
       }
     },

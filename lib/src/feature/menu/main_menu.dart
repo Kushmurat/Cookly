@@ -1,14 +1,24 @@
+import 'package:cookly/src/app/providers.dart';
 import 'package:cookly/src/feature/auth/presentation/widgets/app_icon.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cookly/src/feature/auth/presentation/widgets/app_icon.widget.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../../widget/categories_widget.dart';
 import '../home/navigation/home_navigation_config.dart';
 
-class MainMenu extends StatelessWidget {
-  const MainMenu ({super.key});
+class MainMenu extends StatefulWidget {
+  const MainMenu({super.key});
+
+  @override
+  State<MainMenu> createState() => _MainMenuState();
+}
+
+class _MainMenuState extends State<MainMenu> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +58,8 @@ class MainMenu extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         image: const DecorationImage(
-          image: AssetImage('assets/images/backgraundmenu.png'), // Укажите путь к изображению
+          image: AssetImage('assets/images/backgraundmenu.png'),
+          // Укажите путь к изображению
           fit: BoxFit.cover,
         ),
       ),
@@ -73,16 +84,14 @@ class MainMenu extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           ElevatedButton(
-            onPressed: () {
-
-              },
-            child: const Text('Приготовить',
+            onPressed: () {},
+            child: const Text(
+              'Приготовить',
               style: TextStyle(
                 color: Colors.white,
               ),
             ),
             style: ElevatedButton.styleFrom(
-
               backgroundColor: Colors.orange,
             ),
           ),
@@ -107,15 +116,38 @@ class MainMenu extends StatelessWidget {
     );
   }
 
-
   Widget _buildPopularRecipes() {
     final recipes = [
-      {'title': 'Цезарь с курицей', 'time': '25 мин', 'image': 'assets/images/salat.png'},
-      {'title': 'Название', 'time': '30 мин', 'image': 'assets/images/fish.png'},
-      {'title': 'Название', 'time': '30 мин', 'image': 'assets/images/pizza.png'},
-      {'title': 'Название', 'time': '30 мин', 'image': 'assets/images/shakshuke.png'},
-      {'title': 'Название', 'time': '30 мин', 'image': 'assets/images/bleny.png'},
-      {'title': 'Название', 'time': '30 мин', 'image': 'assets/images/lapsha.png'},
+      {
+        'title': 'Цезарь с курицей',
+        'time': '25 мин',
+        'image': 'assets/images/salat.png'
+      },
+      {
+        'title': 'Название',
+        'time': '30 мин',
+        'image': 'assets/images/fish.png'
+      },
+      {
+        'title': 'Название',
+        'time': '30 мин',
+        'image': 'assets/images/pizza.png'
+      },
+      {
+        'title': 'Название',
+        'time': '30 мин',
+        'image': 'assets/images/shakshuke.png'
+      },
+      {
+        'title': 'Название',
+        'time': '30 мин',
+        'image': 'assets/images/bleny.png'
+      },
+      {
+        'title': 'Название',
+        'time': '30 мин',
+        'image': 'assets/images/lapsha.png'
+      },
     ];
 
     return Column(
@@ -124,16 +156,15 @@ class MainMenu extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              'Популярные рецепты',
+            Text('Популярные рецепты',
                 style: GoogleFonts.montserrat(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                )
-            ),
+                )),
             TextButton(
               onPressed: () {},
-              child: const Text('Посмотреть все',
+              child: const Text(
+                'Посмотреть все',
                 style: TextStyle(
                   color: Colors.blue,
                   fontSize: 9,
@@ -165,6 +196,7 @@ class MainMenu extends StatelessWidget {
       ],
     );
   }
+
   Widget _buildRecipeCard(String title, String time, String image) {
     return Container(
       decoration: BoxDecoration(

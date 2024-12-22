@@ -1,12 +1,11 @@
-import 'package:cookly/main.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../feature/category/presentation/widgets/resipes_preview_screen.dart';
+
 import '../feature/menu/menu_kategory_page/breakfast_page.dart';
 import '../feature/menu/menu_kategory_page/dessert_page.dart';
 import '../feature/menu/menu_kategory_page/dinner_page.dart';
 import '../feature/menu/menu_kategory_page/lunch_page.dart';
 import '../feature/menu/menu_kategory_page/salad_page.dart';
+import '../feature/recipe/presentation/recipes_preview.screen.dart';
 
 class CategoriesWidget extends StatelessWidget {
   const CategoriesWidget({super.key});
@@ -17,30 +16,39 @@ class CategoriesWidget extends StatelessWidget {
       {
         'image': 'assets/images/ic_breakfast.png',
         'label': 'Завтрак',
-        'page': RecipesPreviewScreen(
+        'page': const RecipesPreviewScreen(
+          title: 'BreakFast',
           category: 'breakfast',
-          getRecipesByCategory: context.read(),
         ),
       },
       {
         'image': 'assets/images/ic_lunch.png',
         'label': 'Обед',
-        'page': LunchPage(),
+        'page': const RecipesPreviewScreen(
+          title: 'Lunch',
+          category: 'lunch',
+        ),
       },
       {
         'image': 'assets/images/ic_dinner.png',
         'label': 'Ужин',
-        'page': DinnerPage(),
+        'page': const RecipesPreviewScreen(
+          category: 'dinner',
+          title: 'Dinner',
+        ),
       },
       {
         'image': 'assets/images/ic_dessert.png',
         'label': 'Десерты',
-        'page': DessertPage(),
+        'page': const RecipesPreviewScreen(
+          category: 'dessert',
+          title: 'Dessert',
+        ),
       },
       {
         'image': 'assets/images/ic_salad.png',
         'label': 'Салаты',
-        'page': SaladPage(),
+        'page': const SaladPage(),
       },
     ];
 
